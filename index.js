@@ -92,7 +92,7 @@ function templateCacheFiles(root, base, templateBody, transformUrl) {
 
     file.contents = new Buffer(gutil.template(template, {
       url: url,
-      contents: jsesc(file.contents.toString('utf8')),
+      contents: contents,
       file: file
     }));
 
