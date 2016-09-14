@@ -83,6 +83,12 @@ function templateCacheFiles(root, base, templateBody, transformUrl) {
     /**
      * Create buffer
      */
+    var contents;
+    if (file.extname.toLowerCase() === '.json') {
+      contents = jsesc(JSON.parse(file.contents.toString('utf8')), { 'json': true, 'compact': true });
+    } else {
+      contents = jsesc(file.contents.toString('utf8'));
+    }
 
     file.contents = new Buffer(gutil.template(template, {
       url: url,
